@@ -26,6 +26,36 @@ export function PandaVideoScript() {
         const p = new window.PandaPlayer("panda-4e6212d0-f2c0-45a6-80d7-b532fc5d1f09", {
           onReady() {
             p.loadButtonInTime({ fetchApi: true })
+
+            // Tentar ocultar controles via API
+            if (typeof p.hideControls === "function") {
+              p.hideControls()
+            }
+
+            // Verificar se é dispositivo móvel
+            const isMobile = /iPhone|iPad|iPod|Android/i.test(navigator.userAgent)
+            if (isMobile) {
+              // Adicionar CSS inline para ocultar controles em dispositivos móveis
+              const styleEl = document.createElement("style")
+              styleEl.textContent = `
+                .plyr__controls, 
+                .plyr__control, 
+                .plyr__progress, 
+                .plyr__menu, 
+                .plyr__volume, 
+                .plyr__time, 
+                .plyr__tooltip,
+                .panda-controls,
+                .panda-player-controls,
+                .panda-player-ui {
+                  display: none !important;
+                  opacity: 0 !important;
+                  visibility: hidden !important;
+                  pointer-events: none !important;
+                }
+              `
+              document.head.appendChild(styleEl)
+            }
           },
         })
       }
