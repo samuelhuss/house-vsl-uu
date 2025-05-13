@@ -12,7 +12,6 @@ const nextConfig = {
   },
   // Otimização: Configurações de cache
   experimental: {
-    optimizeCss: true,
     optimizePackageImports: ['framer-motion'],
   },
   eslint: {
