@@ -61,7 +61,7 @@ export default function VSLPage() {
 
       {/* Container do vídeo - sem a div cinza */}
       <motion.div className="w-full max-w-3xl mx-auto" variants={itemVariants}>
-        {/* Panda Video Embed */}
+        {/* Panda Video Embed - Usando exatamente o iframe fornecido */}
         <motion.div
           className="relative pb-[56.25%] h-0 overflow-hidden rounded-lg shadow-xl"
           initial={{ opacity: 0, y: 10 }}
@@ -70,11 +70,12 @@ export default function VSLPage() {
         >
           <iframe
             id="panda-4e6212d0-f2c0-45a6-80d7-b532fc5d1f09"
-            src="https://player-vz-218ece69-811.tv.pandavideo.com.br/embed/?v=4e6212d0-f2c0-45a6-80d7-b532fc5d1f09"
+            src="https://player-vz-218ece69-811.tv.pandavideo.com.br/embed/?v=4e6212d0-f2c0-45a6-80d7-b532fc5d1f09&iosFakeFullscreen=true"
             className="absolute top-0 left-0 w-full h-full border-none panda-video-iframe"
             allow="accelerometer;gyroscope;autoplay;encrypted-media;picture-in-picture"
             allowFullScreen={true}
             fetchPriority="high"
+            style={{ border: "none", position: "absolute", top: 0, left: 0 }}
           ></iframe>
         </motion.div>
 

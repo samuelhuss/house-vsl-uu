@@ -21,8 +21,8 @@ body {
   font-family: Arial, Helvetica, sans-serif;
 }
 
-/* Estilos para o botão do Panda Video */ \
-#4fe0f103-f81a-41f9-86e3-ecfbc743c259 {
+/* Estilos para o botão do Panda Video */
+#panda-window-screen {
   width: 100%;
   display: flex;
   justify-content: center;
