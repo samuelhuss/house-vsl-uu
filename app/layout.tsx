@@ -6,8 +6,8 @@ import "./globals.css"
 const inter = Inter({ subsets: ["latin"] })
 
 export const metadata: Metadata = {
-  title: "House Gestão Imobiliária - VSL",
-  description: "Video Sales Letter da House Gestão Imobiliária",
+  title: "House | Gestão Imobiliária",
+  description: "House | Gestão Imobiliária",
     generator: 'v0.dev'
 }
 
