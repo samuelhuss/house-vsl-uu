@@ -21,8 +21,8 @@ body {
   font-family: Arial, Helvetica, sans-serif;
 }
 
-/* Estilos para o botão do Panda Video */
-#panda-window-screen {
+/* Estilos para o botão do Panda Video */ \
+#4fe0f103-f81a-41f9-86e3-ecfbc743c259 {
   width: 100%;
   display: flex;
   justify-content: center;
@@ -60,60 +60,28 @@ body {
   box-shadow: 0px 0px 20px rgba(254, 87, 0, 0.8) !important;
 }
 
-/* Ocultar todos os controles exceto play/pause */
+/* Ocultar controles do player de vídeo */
 .panda-video-iframe {
-  pointer-events: auto !important; /* Permitir interações com o player */
+  pointer-events: none; /* Desativa interações com o player em dispositivos móveis */
 }
 
-/* Ocultar controles específicos, mantendo apenas play/pause */
-.plyr__progress,
-.plyr__menu,
-.plyr__volume,
-.plyr__time,
-.plyr__tooltip,
-.panda-controls__progress,
-.panda-controls__volume,
-.panda-controls__settings,
-.panda-controls__fullscreen,
-.panda-controls__time,
-.panda-controls__subtitle,
-.panda-controls__quality,
-.panda-controls__speed,
-.panda-controls__share,
-.panda-controls__download {
-  display: none !important;
-  opacity: 0 !important;
-  visibility: hidden !important;
-  pointer-events: none !important;
-}
-
-/* Garantir que apenas o botão de play/pause esteja visível */
-.plyr__control--play,
-.plyr__control--pause,
-.panda-controls__play,
-.panda-controls__pause {
-  display: flex !important;
-  opacity: 1 !important;
-  visibility: visible !important;
-  pointer-events: auto !important;
-}
-
-/* Ajustes para dispositivos móveis */
+/* Reativar interações apenas para o botão */
 @media (max-width: 768px) {
-  /* Manter apenas o botão de play/pause */
-  .plyr__controls,
-  .panda-controls {
-    display: flex !important;
-    opacity: 1 !important;
-    visibility: visible !important;
-    pointer-events: auto !important;
-    justify-content: center !important;
-    background: transparent !important;
+  .panda-video-iframe {
+    pointer-events: none;
   }
 
-  /* Ocultar todos os outros controles */
-  .plyr__controls > *:not(.plyr__control--play):not(.plyr__control--pause),
-  .panda-controls > *:not(.panda-controls__play):not(.panda-controls__pause) {
+  /* Ocultar controles nativos do vídeo em dispositivos móveis */
+  .plyr__controls,
+  .plyr__control,
+  .plyr__progress,
+  .plyr__menu,
+  .plyr__volume,
+  .plyr__time,
+  .plyr__tooltip,
+  .panda-controls,
+  .panda-player-controls,
+  .panda-player-ui {
     display: none !important;
     opacity: 0 !important;
     visibility: hidden !important;
