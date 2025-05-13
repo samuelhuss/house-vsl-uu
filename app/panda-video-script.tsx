@@ -23,7 +23,7 @@ export function PandaVideoScript() {
     window.pandascripttag = window.pandascripttag || []
     window.pandascripttag.push(() => {
       if (window.PandaPlayer) {
-        const p = new window.PandaPlayer("panda-4e6212d0-f2c0-45a6-80d7-b532fc5d1f09", {
+        const p = new window.PandaPlayer("panda-133316f2-6015-417c-b7db-79830abb907d", {
           onReady() {
             p.loadButtonInTime({ fetchApi: true })
           },
@@ -37,5 +37,5 @@ export function PandaVideoScript() {
   }, [])
 
   // Este div é onde o botão do Panda Video será renderizado
-  return <div id="4fe0f103-f81a-41f9-86e3-ecfbc743c259" className="w-full"></div>
+  return <div id="965a7786-2cd9-4369-80b5-f243fa17270b" className="w-full"></div>
 }

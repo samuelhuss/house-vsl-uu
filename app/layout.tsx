@@ -28,9 +28,9 @@ export default function RootLayout({
         />
         <link
           rel="prerender"
-          href="https://player-vz-218ece69-811.tv.pandavideo.com.br/embed/?v=4e6212d0-f2c0-45a6-80d7-b532fc5d1f09"
+          href="https://player-vz-218ece69-811.tv.pandavideo.com.br/embed/?v=133316f2-6015-417c-b7db-79830abb907d"
         />
-        <link rel="preload" href="https://player-vz-218ece69-811.tv.pandavideo.com.br/embed/js/hls.js" as="script" />
+        <link rel="preload"href="https://player-vz-218ece69-811.tv.pandavideo.com.br/embed/js/hls.js" as="script" />
         <link
           rel="preload"
           href="https://player-vz-218ece69-811.tv.pandavideo.com.br/embed/js/plyr.polyfilled.min.js"
@@ -38,17 +38,17 @@ export default function RootLayout({
         />
         <link
           rel="preload"
-          href="https://config.tv.pandavideo.com.br/vz-218ece69-811/4e6212d0-f2c0-45a6-80d7-b532fc5d1f09.json"
+          href="https://config.tv.pandavideo.com.br/vz-218ece69-811/133316f2-6015-417c-b7db-79830abb907d.json"
           as="fetch"
         />
         <link rel="preload" href="https://config.tv.pandavideo.com.br/vz-218ece69-811/config.json" as="fetch" />
         <link
           rel="preload"
-          href="https://b-vz-218ece69-811.tv.pandavideo.com.br/4e6212d0-f2c0-45a6-80d7-b532fc5d1f09/playlist.m3u8"
+          href="https://b-vz-218ece69-811.tv.pandavideo.com.br/133316f2-6015-417c-b7db-79830abb907d/playlist.m3u8"
           as="fetch"
         />
         <link rel="dns-prefetch" href="https://b-vz-218ece69-811.tv.pandavideo.com.br" />
-        <link rel="dns-prefetch" href="https://player-vz-218ece69-811.tv.pandavideo.com.br" />
+        <link rel="dns-prefetch" href="https://player-vz-218ece69-811.tv.pandavideo.com.br"/>
         <link rel="dns-prefetch" href="https://vz-218ece69-811.b-cdn.net" />
 
         {/* Google Tag Manager - Head Script */}

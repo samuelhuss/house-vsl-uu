@@ -69,8 +69,8 @@ export default function VSLPage() {
           transition={{ delay: 0.5, duration: 0.5 }}
         >
           <iframe
-            id="panda-4e6212d0-f2c0-45a6-80d7-b532fc5d1f09"
-            src="https://player-vz-218ece69-811.tv.pandavideo.com.br/embed/?v=4e6212d0-f2c0-45a6-80d7-b532fc5d1f09&autoplay=true&muted=true&alternativeProgress=true&controls=fullscreen&color=%23FE5700&saveProgress=true"
+            id="panda-133316f2-6015-417c-b7db-79830abb907d"
+            src="https://player-vz-218ece69-811.tv.pandavideo.com.br/embed/?v=133316f2-6015-417c-b7db-79830abb907d&autoplay=true&muted=true&alternativeProgress=true&controls=fullscreen&color=%23FE5700&saveProgress=true"
             className="absolute top-0 left-0 w-full h-full border-none"
             allow="accelerometer;gyroscope;autoplay;encrypted-media;picture-in-picture"
             allowFullScreen={true}
