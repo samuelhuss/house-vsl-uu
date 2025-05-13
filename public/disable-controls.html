@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>Disable Controls</title>
+  <style>
+    /* Estilos para ocultar controles do player */
+    .plyr__controls, 
+    .plyr__control, 
+    .plyr__progress, 
+    .plyr__menu, 
+    .plyr__volume, 
+    .plyr__time, 
+    .plyr__tooltip,
+    .panda-controls,
+    .panda-player-controls,
+    .panda-player-ui {
+      display: none !important;
+      opacity: 0 !important;
+      visibility: hidden !important;
+      pointer-events: none !important;
+    }
+  </style>
+  <script>
+    // Este script é injetado no iframe para ocultar controles
+    window.addEventListener('message', function(event) {
+      if (event.data === 'hideControls') {
+        const style = document.createElement('style');
+        style.textContent = `
+          .plyr__controls, 
+          .plyr__control, 
+          .plyr__progress, 
+          .plyr__menu, 
+          .plyr__volume, 
+          .plyr__time, 
+          .plyr__tooltip,
+          .panda-controls,
+          .panda-player-controls,
+          .panda-player-ui {
+            display: none !important;
+            opacity: 0 !important;
+            visibility: hidden !important;
+            pointer-events: none !important;
+          }
+        `;
+        document.head.appendChild(style);
+      }
+    });
+  </script>
+</head>
+<body>
+  <!-- Este arquivo é usado apenas para injetar o script no iframe -->
+</body>
+</html>
