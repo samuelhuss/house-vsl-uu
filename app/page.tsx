@@ -72,8 +72,8 @@ export default function VSLPage() {
             id="panda-4e6212d0-f2c0-45a6-80d7-b532fc5d1f09"
             src="https://player-vz-218ece69-811.tv.pandavideo.com.br/embed/?v=4e6212d0-f2c0-45a6-80d7-b532fc5d1f09"
             className="absolute top-0 left-0 w-full h-full border-none"
-            allow="accelerometer;gyroscope;autoplay;encrypted-media;picture-in-picture"
-            allowFullScreen={true}
+            allow=""
+            allowFullScreen={false}
             fetchPriority="high"
           ></iframe>
         </motion.div>
