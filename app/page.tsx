@@ -70,7 +70,7 @@ export default function VSLPage() {
         >
           <iframe
             id="panda-4e6212d0-f2c0-45a6-80d7-b532fc5d1f09"
-            src="https://player-vz-218ece69-811.tv.pandavideo.com.br/embed/?v=4e6212d0-f2c0-45a6-80d7-b532fc5d1f09&hide_controls=1&disable_controls=1&disable_player_controls=1&disable_share=1&disable_download=1&disable_resume=1"
+            src="https://player-vz-218ece69-811.tv.pandavideo.com.br/embed/?v=4e6212d0-f2c0-45a6-80d7-b532fc5d1f09"
             className="absolute top-0 left-0 w-full h-full border-none panda-video-iframe"
             allow="accelerometer;gyroscope;autoplay;encrypted-media;picture-in-picture"
             allowFullScreen={true}
