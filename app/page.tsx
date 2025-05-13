@@ -97,7 +97,7 @@ export default function VSLPage() {
           >
             <iframe
               id="panda-133316f2-6015-417c-b7db-79830abb907d"
-              src="https://player-vz-218ece69-811.tv.pandavideo.com.br/embed/?v=133316f2-6015-417c-b7db-79830abb907d&autoplay=true&muted=true&alternativeProgress=true&controls=fullscreen&color=%23FE5700&saveProgress=true"
+              src="https://player-vz-218ece69-811.tv.pandavideo.com.br/embed/?v=133316f2-6015-417c-b7db-79830abb907d&alternativeProgress=true&controls=fullscreen&color=%23FE5700&saveProgress=true"
               className="absolute top-0 left-0 w-full h-full border-none"
               allow="accelerometer;gyroscope;autoplay;encrypted-media;picture-in-picture"
               allowFullScreen={true}
