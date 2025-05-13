@@ -35,13 +35,13 @@ export default function RootLayout({
   return (
     <html lang="pt-BR">
       <head>
-        {/* Otimização: Preconexões para domínios externos */}
+        {/* Otimização: Preconexões para domínios externos 
         <link rel="preconnect" href="https://player-vz-218ece69-811.tv.pandavideo.com.br" crossOrigin="anonymous" />
         <link rel="preconnect" href="https://b-vz-218ece69-811.tv.pandavideo.com.br" crossOrigin="anonymous" />
         <link rel="preconnect" href="https://vz-218ece69-811.b-cdn.net" crossOrigin="anonymous" />
         <link rel="preconnect" href="https://www.googletagmanager.com" crossOrigin="anonymous" />
-
-        {/* Preload resources for Panda Video - Otimizado e reorganizado */}
+      */}
+        {/* Preload resources for Panda Video - Otimizado e reorganizado 
         <link
           rel="preload"
           href="https://player-vz-218ece69-811.tv.pandavideo.com.br/embed/css/styles.css"
@@ -59,19 +59,20 @@ export default function RootLayout({
           as="script"
           fetchPriority="high"
         />
-
-        {/* Otimização: Prefetch para recursos que serão necessários em breve */}
+*/}
+        {/* Otimização: Prefetch para recursos que serão necessários em breve 
         <link
           rel="prefetch"
           href="https://config.tv.pandavideo.com.br/vz-218ece69-811/133316f2-6015-417c-b7db-79830abb907d.json"
         />
         <link rel="prefetch" href="https://config.tv.pandavideo.com.br/vz-218ece69-811/config.json" />
-
-        {/* DNS prefetch para domínios externos */}
+*/}
+        {/* DNS prefetch para domínios externos 
         <link rel="dns-prefetch" href="https://b-vz-218ece69-811.tv.pandavideo.com.br" />
         <link rel="dns-prefetch" href="https://player-vz-218ece69-811.tv.pandavideo.com.br" />
         <link rel="dns-prefetch" href="https://vz-218ece69-811.b-cdn.net" />
-
+        */}
+        
         {/* Google Tag Manager - Head Script */}
         <GoogleTagManagerHead />
       </head>
