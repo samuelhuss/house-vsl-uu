@@ -36,11 +36,20 @@
   contain: layout;
 }
 
-/* Otimização: Animações mais eficientes */
+/* Animações CSS para substituir o Framer Motion */
 @keyframes fadeIn {
   from {
     opacity: 0;
-    transform: translateY(8px);
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes fadeUp {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
   }
   to {
     opacity: 1;
@@ -48,13 +57,46 @@
   }
 }
 
+@keyframes fadeScale {
+  from {
+    opacity: 0;
+    transform: scale(0.95);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
 .animate-fade-in {
-  animation: fadeIn 0.4s ease-out forwards;
+  animation: fadeIn 0.5s ease-out forwards;
+}
+
+.animate-fade-up {
+  animation: fadeUp 0.5s ease-out forwards;
+}
+
+.animate-fade-up-delayed {
+  animation: fadeUp 0.5s ease-out 0.2s forwards;
+  opacity: 0;
+}
+
+.animate-fade-scale {
+  animation: fadeScale 0.5s ease-out forwards;
 }
 
 body {
   font-family: Arial, Helvetica, sans-serif;
   text-rendering: optimizeSpeed;
+  background-color: #000000;
+  color: #ffffff;
+}
+
+/* Otimização específica para o logo - LCP */
+img.h-auto {
+  content-visibility: auto;
+  contain: layout style paint;
+  will-change: opacity;
 }
 
 /* Estilos para o botão do Panda Video - Otimizado */ \
@@ -83,19 +125,29 @@ body {
 }
 
 /* Estilos para o botão do Panda Video - Otimizado */
-.button-container a,
-.panda-cta-button {
-  animation: pulse 2s infinite !important;
-  transition: transform 0.3s ease, filter 0.3s ease, box-shadow 0.3s ease !important;
-  transform-origin: center !important;
-  will-change: transform, filter, box-shadow !important;
+.pulse-animation {
+  animation: pulse 2s infinite;
 }
 
-.button-container a:hover,
-.panda-cta-button:hover {
-  transform: scale(1.05) !important;
-  filter: brightness(105%) !important;
-  box-shadow: 0px 0px 15px rgba(254, 87, 0, 0.7) !important;
+/* Transições para hover e active states */
+.hover\:scale-105:hover {
+  transform: scale(1.05);
+}
+
+.hover\:shadow-orange:hover {
+  box-shadow: 0px 0px 15px rgba(254, 87, 0, 0.7);
+}
+
+.active\:scale-95:active {
+  transform: scale(0.95);
+}
+
+.transition-all {
+  transition-property: all;
+}
+
+.duration-300 {
+  transition-duration: 300ms;
 }
 
 @layer utilities {

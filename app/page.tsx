@@ -1,7 +1,5 @@
 "use client"
 import Image from "next/image"
-import { motion } from "framer-motion"
-import { PandaVideoScript } from "./panda-video-script"
 import { Suspense, lazy, useEffect, useState, useRef } from "react"
 import { WhatsappLogo } from "./whatsapp-logo"
 import { LoadingSpinner } from "./loading-spinner"
@@ -12,17 +10,16 @@ const Footer = lazy(() => import("./components/footer"))
 export default function VSLPage() {
   // Estado para controlar se a página está completamente carregada
   const [isLoaded, setIsLoaded] = useState(false)
+  const [showCTA, setShowCTA] = useState(true)
+  const videoRef = useRef<HTMLVideoElement>(null)
 
-   const [showCTA, setShowCTA] = useState(true)
-   const videoRef = useRef<HTMLVideoElement>(null)
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      setShowCTA(true)
+    }, 150000) // 150.000 ms = 2 min e 30 s
 
- useEffect(() => {
-  const timer = setTimeout(() => {
-    setShowCTA(true)
-  }, 150000) // 150.000 ms = 2 min e 30 s
-
-  return () => clearTimeout(timer) // limpa o timer caso o componente seja desmontado
-}, [])
+    return () => clearTimeout(timer) // limpa o timer caso o componente seja desmontado
+  }, [])
 
   // Otimização: Detectar quando a página está completamente carregada
   useEffect(() => {
@@ -34,85 +31,16 @@ export default function VSLPage() {
     }
   }, [])
 
-  // Variantes de animação para Framer Motion - Otimizadas para performance
-  const containerVariants = {
-    hidden: { opacity: 0 },
-    visible: {
-      opacity: 1,
-      transition: {
-        delayChildren: 0.2,
-        staggerChildren: 0.1,
-      },
-    },
-  }
-
-  const itemVariants = {
-    hidden: { y: 10, opacity: 0 },
-    visible: {
-      y: 0,
-      opacity: 1,
-      transition: { type: "spring", stiffness: 200, damping: 20 },
-    },
-  }
-
-  const logoVariants = {
-    hidden: { scale: 0.95, opacity: 0 },
-    visible: {
-      scale: 1,
-      opacity: 1,
-      transition: {
-        type: "spring",
-        stiffness: 150,
-        delay: 0.1,
-      },
-    },
-  }
-
-  const buttonVariants = {
-    hidden: { scale: 0.8, opacity: 0 },
-    visible: {
-      scale: 1,
-      opacity: 1,
-      transition: {
-        type: "spring",
-        stiffness: 400,
-        damping: 10,
-      },
-    },
-    hover: {
-      scale: 1.05,
-      boxShadow: "0px 0px 8px rgb(254, 87, 0)",
-      transition: {
-        type: "spring",
-        stiffness: 400,
-        damping: 10,
-      },
-    },
-    tap: {
-      scale: 0.95,
-      transition: {
-        type: "spring",
-        stiffness: 400,
-        damping: 10,
-      },
-    },
-  }
-
   return (
-    <motion.div
-      className="min-h-screen bg-black flex flex-col items-center p-4 md:p-8"
-      initial="hidden"
-      animate="visible"
-      variants={containerVariants}
-    >
-      {/* Logo - Otimizado com width e height específicos para evitar CLS */}
-      <motion.div className="w-full max-w-4xl mb-6" variants={logoVariants}>
+    <div className="min-h-screen bg-black flex flex-col items-center p-4 md:p-8 animate-fade-in">
+      {/* Logo - Usando animação CSS em vez de Framer Motion */}
+      <div className="w-full max-w-4xl mb-6 animate-fade-scale">
         <div className="flex justify-center">
           <Image
             src="/images/logo.png"
             alt="House Gestão Imobiliária"
-            width={300}
-            height={100}
+            width={400}
+            height={133}
             className="h-auto"
             priority
             quality={90}
@@ -120,21 +48,17 @@ export default function VSLPage() {
             blurDataURL="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVR42mNk+P+/HgAEDQIHXG8NQQAAAABJRU5ErkJggg=="
           />
         </div>
-      </motion.div>
+      </div>
 
-      {/* Container do vídeo - Otimizado */}
-      <motion.div
-        className="w-full max-w-3xl mx-auto"
-        variants={itemVariants}
+      {/* Container do vídeo - Usando animação CSS em vez de Framer Motion */}
+      <div
+        className="w-full max-w-3xl mx-auto animate-fade-up"
         style={{ willChange: "transform, opacity" }} // Otimização para animações
       >
         {/* Panda Video Embed - Com Suspense para melhor carregamento */}
         <Suspense fallback={<LoadingSpinner />}>
-          <motion.div
-            className="relative pb-[56.25%] h-0 overflow-hidden rounded-lg shadow-xl"
-            initial={{ opacity: 0, y: 5 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.3, duration: 0.4 }}
+          <div
+            className="relative pb-[56.25%] h-0 overflow-hidden rounded-lg shadow-xl animate-fade-up-delayed"
             style={{ willChange: "transform, opacity" }}
           >
             <iframe
@@ -146,67 +70,29 @@ export default function VSLPage() {
               fetchPriority="high"
               title="Vídeo de apresentação House Gestão Imobiliária"
             ></iframe>
-          </motion.div>
+          </div>
         </Suspense>
 
-          {/* Botão CTA para WhatsApp - aparece apenas após metade do vídeo */}
+        {/* Botão CTA para WhatsApp - aparece apenas após metade do vídeo */}
         {showCTA && (
-          <motion.div className="mt-8 flex justify-center" initial="hidden" animate="visible" variants={itemVariants}>
-            <motion.a
+          <div className="mt-8 flex justify-center animate-fade-up-delayed">
+            <a
               href="https://chat.whatsapp.com/E33bM78bqJf1rHmY0cm1Kl"
               target="_blank"
               rel="noopener noreferrer"
-              className="bg-house-orange text-white font-bold py-4 px-8 rounded-lg text-xl flex items-center gap-3 shadow-lg"
-              variants={buttonVariants}
-              whileHover="hover"
-              whileTap="tap"
-              animate={{
-                boxShadow: [
-                  "0px 0px 0px rgba(254, 87, 0, 0)",
-                  "0px 0px 15px rgba(254, 87, 0, 0.7)",
-                  "0px 0px 0px rgba(254, 87, 0, 0)",
-                ],
-              }}
-              transition={{
-                boxShadow: {
-                  repeat: Number.POSITIVE_INFINITY,
-                  duration: 2,
-                },
-              }}
+              className="bg-house-orange text-white font-bold py-4 px-8 rounded-lg text-xl flex items-center gap-3 shadow-lg hover:scale-105 hover:shadow-orange active:scale-95 transition-all duration-300 pulse-animation"
             >
               <WhatsappLogo className="w-7 h-7" />
               Quero participar do grupo
-            </motion.a>
-          </motion.div>
+            </a>
+          </div>
         )}
-      </motion.div>
-
-        {/* Container para o botão do Panda Video com animação otimizada 
-        <motion.div
-          className="mt-6 flex justify-center button-container"
-          initial={{ opacity: 0, scale: 0.95 }}
-          animate={{
-            opacity: 1,
-            scale: 1,
-            transition: {
-              delay: 0.5,
-              duration: 0.4,
-              type: "spring",
-              stiffness: 300,
-              damping: 15,
-            },
-          }}
-          style={{ willChange: "transform, opacity" }}
-        >*/}
-          {/* Componente para carregar o script do Panda Video e o botão externo 
-          <PandaVideoScript />
-        </motion.div>
-      </motion.div>*/}
+      </div>
 
       {/* Rodapé - Lazy loaded */}
       <Suspense fallback={<div className="mt-8 h-6"></div>}>
         <Footer />
       </Suspense>
-    </motion.div>
+    </div>
   )
 }

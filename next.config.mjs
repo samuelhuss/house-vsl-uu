@@ -14,17 +14,12 @@ const nextConfig = {
   images: {
     formats: ['image/avif', 'image/webp'],
     minimumCacheTTL: 60,
-    unoptimized: false,
+    unoptimized: true,
   },
 
   // Otimização: Configurações de compilação
   compiler: {
     removeConsole: process.env.NODE_ENV === 'production',
-  },
-
-  // Otimização: Importação inteligente de pacotes pesados
-  experimental: {
-    optimizePackageImports: ['framer-motion'],
   },
 
   // Cabeçalhos personalizados
