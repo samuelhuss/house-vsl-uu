@@ -13,7 +13,7 @@ export default function VSLPage() {
   const [isLoaded, setIsLoaded] = useState(false)
   const videoRef = useRef<HTMLVideoElement>(null)
 
-  
+
   // Otimização: Detectar quando a página está completamente carregada
   useEffect(() => {
     if (document.readyState === "complete") {
@@ -25,9 +25,9 @@ export default function VSLPage() {
   }, [])
 
   return (
-    <div className="container">
+    <div className="container animate-fade-in">
       {/* Logo - Versão otimizada para first paint */}
-      <div className="logo-container ">
+      <div className="logo-container animate-fade-scale">
         {/* Versão inline para first paint */}
         <img
           src="/images/logo.png"
@@ -41,13 +41,13 @@ export default function VSLPage() {
 
       {/* Container do vídeo - Usando animação CSS em vez de Framer Motion */}
       <div
-        className="w-full max-w-3xl mx-auto"
+        className="w-full max-w-3xl mx-auto animate-fade-up"
         style={{ willChange: "transform, opacity" }} // Otimização para animações
       >
         {/* Panda Video Embed - Com Suspense para melhor carregamento */}
         <Suspense fallback={<LoadingSpinner />}>
           <div
-            className="relative pb-[56.25%] h-0 overflow-hidden rounded-lg shadow-xl"
+            className="relative pb-[56.25%] h-0 overflow-hidden rounded-lg shadow-xl animate-fade-up-delayed"
             style={{ willChange: "transform, opacity" }}
           >
             <iframe
@@ -62,8 +62,7 @@ export default function VSLPage() {
           </div>
         </Suspense>
 
-        {/* Botão CTA para WhatsApp - aparece apenas após metade do vídeo */}
-          <div className="mt-8 flex justify-center">
+          <div className="mt-8 flex justify-center animate-fade-up-delayed">
             <a
               href="https://chat.whatsapp.com/E33bM78bqJf1rHmY0cm1Kl"
               target="_blank"
