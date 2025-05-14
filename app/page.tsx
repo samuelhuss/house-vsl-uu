@@ -11,17 +11,9 @@ const OptimizedImage = lazy(() => import("./components/optimized-image"))
 export default function VSLPage() {
   // Estado para controlar se a página está completamente carregada
   const [isLoaded, setIsLoaded] = useState(false)
-  const [showCTA, setShowCTA] = useState(true)
   const videoRef = useRef<HTMLVideoElement>(null)
 
-  useEffect(() => {
-    const timer = setTimeout(() => {
-      setShowCTA(true)
-    }, 150000) // 150.000 ms = 2 min e 30 s
-
-    return () => clearTimeout(timer) // limpa o timer caso o componente seja desmontado
-  }, [])
-
+  
   // Otimização: Detectar quando a página está completamente carregada
   useEffect(() => {
     if (document.readyState === "complete") {
@@ -33,9 +25,9 @@ export default function VSLPage() {
   }, [])
 
   return (
-    <div className="container animate-fade-in">
+    <div className="container">
       {/* Logo - Versão otimizada para first paint */}
-      <div className="logo-container animate-fade-scale">
+      <div className="logo-container ">
         {/* Versão inline para first paint */}
         <img
           src="/images/logo.png"
@@ -49,13 +41,13 @@ export default function VSLPage() {
 
       {/* Container do vídeo - Usando animação CSS em vez de Framer Motion */}
       <div
-        className="w-full max-w-3xl mx-auto animate-fade-up"
+        className="w-full max-w-3xl mx-auto"
         style={{ willChange: "transform, opacity" }} // Otimização para animações
       >
         {/* Panda Video Embed - Com Suspense para melhor carregamento */}
         <Suspense fallback={<LoadingSpinner />}>
           <div
-            className="relative pb-[56.25%] h-0 overflow-hidden rounded-lg shadow-xl animate-fade-up-delayed"
+            className="relative pb-[56.25%] h-0 overflow-hidden rounded-lg shadow-xl"
             style={{ willChange: "transform, opacity" }}
           >
             <iframe
@@ -71,8 +63,7 @@ export default function VSLPage() {
         </Suspense>
 
         {/* Botão CTA para WhatsApp - aparece apenas após metade do vídeo */}
-        {showCTA && (
-          <div className="mt-8 flex justify-center animate-fade-up-delayed">
+          <div className="mt-8 flex justify-center">
             <a
               href="https://chat.whatsapp.com/E33bM78bqJf1rHmY0cm1Kl"
               target="_blank"
@@ -83,7 +74,7 @@ export default function VSLPage() {
               Quero participar do grupo
             </a>
           </div>
-        )}
+
       </div>
 
       {/* Rodapé - Lazy loaded */}
