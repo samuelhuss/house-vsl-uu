@@ -1,0 +1,146 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Otimização: Reduzir o tamanho do CSS e melhorar a especificidade */
+:root {
+  --background: 0 0% 100%;
+  --foreground: 0 0% 3.9%;
+  --card: 0 0% 100%;
+  --card-foreground: 0 0% 3.9%;
+  --popover: 0 0% 100%;
+  --popover-foreground: 0 0% 3.9%;
+  --primary: 0 0% 9%;
+  --primary-foreground: 0 0% 98%;
+  --secondary: 0 0% 96.1%;
+  --secondary-foreground: 0 0% 9%;
+  --muted: 0 0% 96.1%;
+  --muted-foreground: 0 0% 45.1%;
+  --accent: 0 0% 96.1%;
+  --accent-foreground: 0 0% 9%;
+  --destructive: 0 84.2% 60.2%;
+  --destructive-foreground: 0 0% 98%;
+  --border: 0 0% 89.8%;
+  --input: 0 0% 89.8%;
+  --ring: 0 0% 3.9%;
+  --radius: 0.5rem;
+}
+
+/* Otimização: Usar content-visibility para melhorar o rendering */
+.cv-auto {
+  content-visibility: auto;
+}
+
+/* Otimização: Usar contain para melhorar o rendering */
+.contain-layout {
+  contain: layout;
+}
+
+/* Animações CSS para substituir o Framer Motion */
+@keyframes fadeUp {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes fadeScale {
+  from {
+    opacity: 0;
+    transform: scale(0.95);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+.animate-fade-up {
+  animation: fadeUp 0.5s ease-out forwards;
+}
+
+.animate-fade-up-delayed {
+  animation: fadeUp 0.5s ease-out 0.2s forwards;
+  opacity: 0;
+}
+
+.animate-fade-scale {
+  animation: fadeScale 0.5s ease-out forwards;
+}
+
+/* Otimização específica para o logo - LCP */
+img.h-auto {
+  content-visibility: auto;
+  contain: layout style paint;
+  will-change: opacity;
+}
+
+/* Estilos para o botão do Panda Video - Otimizado */ \
+#4fe0f103-f81a-41f9-86e3-ecfbc743c259 {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  contain: content;
+}
+
+/* Animação de pulsação para o botão - Otimizada para performance */
+@keyframes pulse {
+  0% {
+    transform: scale(1);
+    box-shadow: 0 0 0 0 rgba(254, 87, 0, 0.7);
+  }
+  70% {
+    transform: scale(1.03);
+    box-shadow: 0 0 0 8px rgba(254, 87, 0, 0);
+  }
+  100% {
+    transform: scale(1);
+    box-shadow: 0 0 0 0 rgba(254, 87, 0, 0);
+  }
+}
+
+/* Estilos para o botão do Panda Video - Otimizado */
+.pulse-animation {
+  animation: pulse 2s infinite;
+}
+
+/* Transições para hover e active states */
+.hover\:scale-105:hover {
+  transform: scale(1.05);
+}
+
+.hover\:shadow-orange:hover {
+  box-shadow: 0px 0px 15px rgba(254, 87, 0, 0.7);
+}
+
+.active\:scale-95:active {
+  transform: scale(0.95);
+}
+
+.transition-all {
+  transition-property: all;
+}
+
+.duration-300 {
+  transition-duration: 300ms;
+}
+
+@layer utilities {
+  .text-balance {
+    text-wrap: balance;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+  body {
+    @apply bg-background text-foreground;
+  }
+}

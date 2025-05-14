@@ -1,42 +1,30 @@
+/* Diretivas de layer do Tailwind CSS */
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
-/* Otimização: Reduzir o tamanho do CSS e melhorar a especificidade */
-:root {
-  --background: 0 0% 100%;
-  --foreground: 0 0% 3.9%;
-  --card: 0 0% 100%;
-  --card-foreground: 0 0% 3.9%;
-  --popover: 0 0% 100%;
-  --popover-foreground: 0 0% 3.9%;
-  --primary: 0 0% 9%;
-  --primary-foreground: 0 0% 98%;
-  --secondary: 0 0% 96.1%;
-  --secondary-foreground: 0 0% 9%;
-  --muted: 0 0% 96.1%;
-  --muted-foreground: 0 0% 45.1%;
-  --accent: 0 0% 96.1%;
-  --accent-foreground: 0 0% 9%;
-  --destructive: 0 84.2% 60.2%;
-  --destructive-foreground: 0 0% 98%;
-  --border: 0 0% 89.8%;
-  --input: 0 0% 89.8%;
-  --ring: 0 0% 3.9%;
-  --radius: 0.5rem;
+/* CSS crítico para first paint */
+body {
+  margin: 0;
+  padding: 0;
+  font-family: Arial, sans-serif;
+  background-color: #000000;
+  color: #ffffff;
 }
 
-/* Otimização: Usar content-visibility para melhorar o rendering */
-.cv-auto {
-  content-visibility: auto;
+.logo-container {
+  display: flex;
+  justify-content: center;
+  width: 100%;
+  max-width: 800px;
+  margin: 0 auto 1.5rem;
 }
 
-/* Otimização: Usar contain para melhorar o rendering */
-.contain-layout {
-  contain: layout;
+.logo-image {
+  max-width: 100%;
+  height: auto;
 }
 
-/* Animações CSS para substituir o Framer Motion */
 @keyframes fadeIn {
   from {
     opacity: 0;
@@ -46,6 +34,99 @@
   }
 }
 
+.animate-fade-in {
+  animation: fadeIn 0.5s ease-out forwards;
+}
+
+.container {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 1rem;
+}
+
+@media (min-width: 768px) {
+  .container {
+    padding: 2rem;
+  }
+}
+
+.house-orange {
+  color: #fe5700;
+}
+
+.bg-house-orange {
+  background-color: #fe5700;
+}
+
+/* Estilos mínimos para o spinner de carregamento */
+.flex {
+  display: flex;
+}
+
+.justify-center {
+  justify-content: center;
+}
+
+.items-center {
+  align-items: center;
+}
+
+.h-16 {
+  height: 4rem;
+}
+
+.w-16 {
+  width: 4rem;
+}
+
+.animate-spin {
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.rounded-full {
+  border-radius: 9999px;
+}
+
+.border-t-2 {
+  border-top-width: 2px;
+}
+
+.border-b-2 {
+  border-bottom-width: 2px;
+}
+
+.border-house-orange {
+  border-color: #fe5700;
+}
+
+/* Outras regras de layer necessárias */
+@layer base {
+  * {
+    @apply border-border;
+  }
+  body {
+    @apply bg-background text-foreground;
+  }
+}
+
+@layer utilities {
+  .text-balance {
+    text-wrap: balance;
+  }
+}
+
+/* Otimização: Animações CSS para substituir o Framer Motion */
 @keyframes fadeUp {
   from {
     opacity: 0;
@@ -68,10 +149,6 @@
   }
 }
 
-.animate-fade-in {
-  animation: fadeIn 0.5s ease-out forwards;
-}
-
 .animate-fade-up {
   animation: fadeUp 0.5s ease-out forwards;
 }
@@ -83,29 +160,6 @@
 
 .animate-fade-scale {
   animation: fadeScale 0.5s ease-out forwards;
-}
-
-body {
-  font-family: Arial, Helvetica, sans-serif;
-  text-rendering: optimizeSpeed;
-  background-color: #000000;
-  color: #ffffff;
-}
-
-/* Otimização específica para o logo - LCP */
-img.h-auto {
-  content-visibility: auto;
-  contain: layout style paint;
-  will-change: opacity;
-}
-
-/* Estilos para o botão do Panda Video - Otimizado */ \
-#4fe0f103-f81a-41f9-86e3-ecfbc743c259 {
-  width: 100%;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  contain: content;
 }
 
 /* Animação de pulsação para o botão - Otimizada para performance */
@@ -148,21 +202,6 @@ img.h-auto {
 
 .duration-300 {
   transition-duration: 300ms;
-}
-
-@layer utilities {
-  .text-balance {
-    text-wrap: balance;
-  }
-}
-
-@layer base {
-  * {
-    @apply border-border;
-  }
-  body {
-    @apply bg-background text-foreground;
-  }
 }
 
 /* Otimização: Adicionar suporte para display: swap nas fontes */
