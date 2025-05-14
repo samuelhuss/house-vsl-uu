@@ -13,7 +13,7 @@ export default function VSLPage() {
   // Estado para controlar se a página está completamente carregada
   const [isLoaded, setIsLoaded] = useState(false)
 
-   const [showCTA, setShowCTA] = useState(false)
+   const [showCTA, setShowCTA] = useState(true)
    const videoRef = useRef<HTMLVideoElement>(null)
 
  useEffect(() => {
