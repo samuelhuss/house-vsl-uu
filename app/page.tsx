@@ -2,7 +2,8 @@
 import Image from "next/image"
 import { motion } from "framer-motion"
 import { PandaVideoScript } from "./panda-video-script"
-import { Suspense, lazy, useEffect, useState } from "react"
+import { Suspense, lazy, useEffect, useState, useRef } from "react"
+import { WhatsappLogo } from "./whatsapp-logo"
 import { LoadingSpinner } from "./loading-spinner"
 
 // Otimização: Lazy loading do componente de rodapé
@@ -11,6 +12,41 @@ const Footer = lazy(() => import("./components/footer"))
 export default function VSLPage() {
   // Estado para controlar se a página está completamente carregada
   const [isLoaded, setIsLoaded] = useState(false)
+
+   const [showCTA, setShowCTA] = useState(true)
+   const videoRef = useRef<HTMLVideoElement>(null)
+
+  // Função para lidar com mensagens do Panda Video
+  useEffect(() => {
+    const handlePandaMessage = (event: MessageEvent) => {
+      // Verificar se a mensagem é do Panda Video
+      if (event.data && typeof event.data === "string") {
+        try {
+          const data = JSON.parse(event.data)
+
+          // Panda Video envia eventos de progresso que podemos capturar
+          // O formato exato pode variar, mas geralmente inclui informações sobre o progresso
+          if (data.event === "timeupdate" || data.action === "timeupdate") {
+            const percentWatched = data.percent || data.percentage || 0
+            if (percentWatched >= 50 && !showCTA) {
+              setShowCTA(true)
+            }
+          }
+        } catch (e) {
+          // Ignorar mensagens que não são JSON válido
+        }
+      }
+    }
+
+    // Adicionar listener para mensagens do iframe
+    window.addEventListener("message", handlePandaMessage)
+
+    // Limpar listener ao desmontar
+    return () => {
+      window.removeEventListener("message", handlePandaMessage)
+    }
+  }, [showCTA])
+
 
   // Otimização: Detectar quando a página está completamente carregada
   useEffect(() => {
@@ -52,6 +88,36 @@ export default function VSLPage() {
         type: "spring",
         stiffness: 150,
         delay: 0.1,
+      },
+    },
+  }
+
+  const buttonVariants = {
+    hidden: { scale: 0.8, opacity: 0 },
+    visible: {
+      scale: 1,
+      opacity: 1,
+      transition: {
+        type: "spring",
+        stiffness: 400,
+        damping: 10,
+      },
+    },
+    hover: {
+      scale: 1.05,
+      boxShadow: "0px 0px 8px rgb(254, 87, 0)",
+      transition: {
+        type: "spring",
+        stiffness: 400,
+        damping: 10,
+      },
+    },
+    tap: {
+      scale: 0.95,
+      transition: {
+        type: "spring",
+        stiffness: 400,
+        damping: 10,
       },
     },
   }
@@ -102,13 +168,44 @@ export default function VSLPage() {
               allow="accelerometer;gyroscope;autoplay;encrypted-media;picture-in-picture"
               allowFullScreen={true}
               fetchPriority="high"
-              loading="eager"
               title="Vídeo de apresentação House Gestão Imobiliária"
             ></iframe>
           </motion.div>
         </Suspense>
 
-        {/* Container para o botão do Panda Video com animação otimizada */}
+          {/* Botão CTA para WhatsApp - aparece apenas após metade do vídeo */}
+        {showCTA && (
+          <motion.div className="mt-8 flex justify-center" initial="hidden" animate="visible" variants={itemVariants}>
+            <motion.a
+              href="https://chat.whatsapp.com/E33bM78bqJf1rHmY0cm1Kl"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="bg-house-orange text-white font-bold py-4 px-8 rounded-lg text-xl flex items-center gap-3 shadow-lg"
+              variants={buttonVariants}
+              whileHover="hover"
+              whileTap="tap"
+              animate={{
+                boxShadow: [
+                  "0px 0px 0px rgba(254, 87, 0, 0)",
+                  "0px 0px 15px rgba(254, 87, 0, 0.7)",
+                  "0px 0px 0px rgba(254, 87, 0, 0)",
+                ],
+              }}
+              transition={{
+                boxShadow: {
+                  repeat: Number.POSITIVE_INFINITY,
+                  duration: 2,
+                },
+              }}
+            >
+              <WhatsappLogo className="w-7 h-7" />
+              Quero participar do grupo
+            </motion.a>
+          </motion.div>
+        )}
+      </motion.div>
+
+        {/* Container para o botão do Panda Video com animação otimizada 
         <motion.div
           className="mt-6 flex justify-center button-container"
           initial={{ opacity: 0, scale: 0.95 }}
@@ -124,11 +221,11 @@ export default function VSLPage() {
             },
           }}
           style={{ willChange: "transform, opacity" }}
-        >
-          {/* Componente para carregar o script do Panda Video e o botão externo */}
+        >*/}
+          {/* Componente para carregar o script do Panda Video e o botão externo 
           <PandaVideoScript />
         </motion.div>
-      </motion.div>
+      </motion.div>*/}
 
       {/* Rodapé - Lazy loaded */}
       <Suspense fallback={<div className="mt-8 h-6"></div>}>

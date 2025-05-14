@@ -4,31 +4,29 @@ const nextConfig = {
   images: {
     formats: ['image/avif', 'image/webp'],
     minimumCacheTTL: 60,
-    unoptimized: true,
+    unoptimized: false,
   },
+
   // Otimização: Configurações de compilação
   compiler: {
     removeConsole: process.env.NODE_ENV === 'production',
   },
-  // Otimização: Configurações de cache
+
+  // Otimização: Importação inteligente de pacotes pesados
   experimental: {
     optimizePackageImports: ['framer-motion'],
   },
-  eslint: {
-    ignoreDuringBuilds: true,
-  },
-  typescript: {
-    ignoreBuildErrors: true,
-  },
-  // Otimização: Configurações de headers
+
+  // Cabeçalhos personalizados
   async headers() {
     return [
       {
+        // Headers de segurança para todas as rotas, sem cache
         source: '/(.*)',
         headers: [
           {
             key: 'Cache-Control',
-            value: 'public, max-age=3600, s-maxage=86400, stale-while-revalidate=31536000',
+            value: 'no-store',
           },
           {
             key: 'X-Content-Type-Options',
@@ -45,6 +43,7 @@ const nextConfig = {
         ],
       },
       {
+        // Cache agressivo apenas para imagens
         source: '/images/(.*)',
         headers: [
           {
