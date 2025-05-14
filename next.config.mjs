@@ -31,28 +31,6 @@ const nextConfig = {
   async headers() {
     return [
       {
-        // Headers de segurança para todas as rotas, sem cache
-        source: '/(.*)',
-        headers: [
-          {
-            key: 'Cache-Control',
-            value: 'no-store',
-          },
-          {
-            key: 'X-Content-Type-Options',
-            value: 'nosniff',
-          },
-          {
-            key: 'X-Frame-Options',
-            value: 'DENY',
-          },
-          {
-            key: 'X-XSS-Protection',
-            value: '1; mode=block',
-          },
-        ],
-      },
-      {
         // Cache agressivo apenas para imagens
         source: '/images/(.*)',
         headers: [

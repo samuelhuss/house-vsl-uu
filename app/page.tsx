@@ -13,40 +13,16 @@ export default function VSLPage() {
   // Estado para controlar se a página está completamente carregada
   const [isLoaded, setIsLoaded] = useState(false)
 
-   const [showCTA, setShowCTA] = useState(true)
+   const [showCTA, setShowCTA] = useState(false)
    const videoRef = useRef<HTMLVideoElement>(null)
 
-  // Função para lidar com mensagens do Panda Video
-  useEffect(() => {
-    const handlePandaMessage = (event: MessageEvent) => {
-      // Verificar se a mensagem é do Panda Video
-      if (event.data && typeof event.data === "string") {
-        try {
-          const data = JSON.parse(event.data)
+ useEffect(() => {
+  const timer = setTimeout(() => {
+    setShowCTA(true)
+  }, 150000) // 150.000 ms = 2 min e 30 s
 
-          // Panda Video envia eventos de progresso que podemos capturar
-          // O formato exato pode variar, mas geralmente inclui informações sobre o progresso
-          if (data.event === "timeupdate" || data.action === "timeupdate") {
-            const percentWatched = data.percent || data.percentage || 0
-            if (percentWatched >= 50 && !showCTA) {
-              setShowCTA(true)
-            }
-          }
-        } catch (e) {
-          // Ignorar mensagens que não são JSON válido
-        }
-      }
-    }
-
-    // Adicionar listener para mensagens do iframe
-    window.addEventListener("message", handlePandaMessage)
-
-    // Limpar listener ao desmontar
-    return () => {
-      window.removeEventListener("message", handlePandaMessage)
-    }
-  }, [showCTA])
-
+  return () => clearTimeout(timer) // limpa o timer caso o componente seja desmontado
+}, [])
 
   // Otimização: Detectar quando a página está completamente carregada
   useEffect(() => {
