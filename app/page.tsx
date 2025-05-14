@@ -34,7 +34,21 @@ export default function VSLPage() {
   return (
     <div className="min-h-screen bg-black flex flex-col items-center p-4 md:p-8 animate-fade-in">
       {/* Logo - Usando animação CSS em vez de Framer Motion */}
-    
+      <div className="w-full max-w-4xl mb-6 animate-fade-scale">
+        <div className="flex justify-center">
+          <Image
+            src="/images/logo.png"
+            alt="House Gestão Imobiliária"
+            width={400}
+            height={133}
+            className="h-auto"
+            priority
+            quality={90}
+            placeholder="blur"
+            blurDataURL="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVR42mNk+P+/HgAEDQIHXG8NQQAAAABJRU5ErkJggg=="
+          />
+        </div>
+      </div>
 
       {/* Container do vídeo - Usando animação CSS em vez de Framer Motion */}
       <div
